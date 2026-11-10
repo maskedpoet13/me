@@ -1,0 +1,71 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+
+/*
+ * Design tokens (SPEC Section 8). Raw colour values live ONLY here.
+ * Components use semantic classes such as bg-accent or text-ink-muted.
+ * Light mode only for now. Dark mode can later re-map these same names.
+ */
+@theme {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+
+  --color-canvas: #f6f6f7;
+  --color-surface: #ffffff;
+  --color-line: #e4e4e7;
+  --color-ink: #18181b;
+  --color-ink-muted: #52525b;
+
+  --color-accent: #a8452a;
+  --color-accent-hover: #8f3a22;
+  --color-accent-muted: #fbeee9;
+  --color-on-accent: #ffffff;
+
+  --color-danger: #b42318;
+
+  --radius-card: 8px;
+  --radius-control: 8px;
+
+  --shadow-pop: 0 4px 16px rgb(24 24 27 / 0.08);
+
+  --breakpoint-md: 768px;
+}
+
+html {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-ink);
+  background: var(--color-canvas);
+  font-display: swap;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+}
+
+/* Visible focus on everything interactive */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@keyframes shimmer {
+  0% { opacity: 1; }
+  50% { opacity: 0.55; }
+  100% { opacity: 1; }
+}
+.skeleton {
+  background: var(--color-line);
+  animation: shimmer 1.4s ease-in-out infinite;
+}
